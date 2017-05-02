@@ -1,0 +1,16 @@
+/*#0C120C
+#A30000
+#6D7275
+#F0A202
+#FFFFFF*/
+
+body{
+  font-family: 'Biryani', sans-serif;
+  background-color: #6D7275;
+}
+
+
+
+.welcome-message{
+  text-align: center;
+}
