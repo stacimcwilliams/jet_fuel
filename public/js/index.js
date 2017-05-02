@@ -26,17 +26,17 @@ const prependFolder = folder => {
 }
 
 $(document).ready(() => {
-  console.log('ready')
+  getFolders()
 })
 
 const getFolders = () => {
   fetch('/api/v1/folders')
     .then(response => response.json())
-    .then(data => renderfolder(data.folders))
+    .then(data => renderFolders(data.folders))
 }
 
 const renderFolders = folders => {
-  $('.folder-container').prepend(folders.map(folder => {`
+  $('.folder-container').prepend(folders.map(folder => `
     <p class=${folder.id}  name=${folder.id} >${folder.name}</p>
-  `}))
+  `))
 }

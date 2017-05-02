@@ -9,8 +9,8 @@ app.use(express.static('public'))
 
 app.set('port', process.env.PORT || 3000)
 app.locals.title = 'jetfuel'
-app.locals.folders = []
-app.locals.links = []
+app.locals.folders = [{name:'1', id:1},{name:2}, id:2]
+app.locals.links = [{name: 'amazon', link: 'http://www.amazon.com', folder: 1, id: 1}]
 
 app.get('/', (request, response) => {
   fs.readFile(`${__dirname}/index.html`, (err, file) => {
