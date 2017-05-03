@@ -11,8 +11,10 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "knex": "^0.13.0",
     "md5": "^2.2.1",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "pg": "^6.1.5"
   },
   "devDependencies": {},
   "repository": {
