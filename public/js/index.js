@@ -1,3 +1,7 @@
+$(document).ready(() => {
+  getFolders()
+})
+
 $('#submit-button').on('click', (e) => {
   e.preventDefault()
   const userFolder = $('#folder-input').val()
@@ -17,13 +21,22 @@ const createFolder = name => {
 
 const prependFolder = folder => {
   $('.folder-container').prepend(`
-    <p class=${folder.id}  name=${folder.id} >${folder.name}</p>
+    <p id=${folder.id} class="folder" name=${folder.id} >${folder.name}</p>
   `)
 }
 
-$(document).ready(() => {
-  getFolders()
+$('.folder-container').on('click', (e) => {
+  if(e.target.className === 'folder'){
+    folderDetails(e.target.id)
+  }
 })
+
+const folderDetails = (id) => {
+  $('.folder-detail').append(`
+    
+  `)
+}
+
 
 const getFolders = () => {
   fetch('/api/v1/folders')
@@ -32,9 +45,7 @@ const getFolders = () => {
 }
 
 const renderFolders = folders => {
-  $('.folder-container').prepend(folders.map(folder => `
-    <p class=${folder.id}  name=${folder.id} >${folder.name}</p>
-  `))
+  folders.map(folder => prependFolder(folder))
 }
 
 $('#crushify-button').on('click', (e) => {
