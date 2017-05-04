@@ -22,7 +22,10 @@ app.get('/', (request, response) => {
 app.get('/api/v1/folders', (request, response) => {
   database('folders').select()
     .then(folders => response.status(200).json(folders))
-    .catch(error => console.log('error: ', error))
+    .catch(error => {
+      response.status(500)
+      console.log('error: ', error)
+    })
 })
 
 app.get('/api/v1/links', (request, response) => {
@@ -37,13 +40,27 @@ app.get('/api/v1/folders/:folder_id', (request, response) => {
     .catch(error => console.log('error: ', error))
 })
 
-app.get('/api/v1/:id', (request, response) => {
+app.get('/api/v1/links/:link_id', (request, response) => {
+  database('links').where('id', request.params.link_id).select()
+    .then(link => response.status(200).json(link))
+    .catch(error => console.log('error: ', error))
+})
+
+app.get('/short/:id', (request, response) => {
+  let visits
+  let url
+
   database('links').where('id', request.params.id).select()
     .then(data => {
-      const link = data[0]
-      return response.redirect(link.url)
+      let link = data[0]
+      visits = link.visits + 1
+      url = link.url
     })
-    .catch(error => console.log('error: ', error))
+    .then(() =>  {
+      database('links').where('id', request.params.id).update('visits', visits)
+      .then(()=> response.redirect(307, url))// add a status code
+      .catch(error => console.log('error: ', error))
+    })
 })
 
 app.get('/api/v1/folders/:folder_id/links', (request, response) => {
@@ -67,13 +84,15 @@ app.post('/api/v1/links', (request, response) => {
     .catch(error => console.log('error: ', error))
 })
 
-// app.patch('/api/v1/links/:link_id', (request, response) => {
-//   const link = request.body
-//   database('links').where('id', request.perams.link_id).update(link, ['id', 'name', 'url', 'visits'])
-//     .then(link => response.status(201).json(link[0]))
-//     .catch(error => console.log('error: ', error))
-// })
+app.patch('/api/v1/links/:link_id', (request, response) => {
+  const link = request.body
+  database('links').where('id', request.params.link_id).update(link, ['id', 'name', 'url', 'visits'])
+    .then(link => response.status(200).json(link[0]))
+    .catch(error => console.log('error: ', error))
+})
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`)
 })
+
+module.exports = app
