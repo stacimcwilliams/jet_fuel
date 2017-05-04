@@ -66,6 +66,7 @@ const prependFolder = folder => {
 const submitUrl = (id) => {
   const name = $('#url-name').val()
   const url = $('#url').val()
+
   crushifyLink(name, url, id)
   $('#url, #url-name').val('')
 }
@@ -79,6 +80,7 @@ const createFolder = title => {
   .then(response => response.json())
   .then(folder => prependFolder(folder))
 }
+
 
 const crushifyLink = (name,url,folderId) => {
   fetch(`api/v1/links`, {
