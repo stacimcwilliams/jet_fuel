@@ -21,19 +21,26 @@ const createFolder = title => {
 
 const prependFolder = folder => {
   $('.folder-container').prepend(`
-    <p id=${folder.id} class="folder" name=${folder.id} >${folder.title}</p>
+    <p id=${folder.id} class="folder" name=${folder.title} >${folder.title}</p>
   `)
 }
 
 $('.folder-container').on('click', (e) => {
   if(e.target.className === 'folder'){
-    folderDetails(e.target.id)
+    folderDetails(e.target.id, e.target.innerText)
   }
 })
 
-const folderDetails = (id) => {
-  $('.folder-detail').append(`
-
+const folderDetails = (id, name) => {
+  let container = $('.folder-detail')
+  container.empty()
+  container.append(`
+    <div class="folder-details">
+      <h2 class="detail-name">${name}</h2>
+        <input id="url-name" placeholder="name"></input>
+        <input id="url" placeholder="url"></input>
+        <button onclick=submitUrl(${id}) id="crushify-button">Crushify!!!!</button>
+    </div>
   `)
 }
 
@@ -47,13 +54,20 @@ const renderFolders = folders => {
   folders.map(folder => prependFolder(folder))
 }
 
-$('#crushify-button').on('click', (e) => {
-  e.preventDefault()
+const submitUrl = ( id) => {
   const name = $('#url-name').val()
   const url = $('#url').val()
-  crushifyLink(name, url, 1)
+  // crushifyLink(name, url, 1)
   $('#url, #url-name').val('')
-})
+}
+
+// $('#crushify-button').on('click', (e) => {
+//   e.preventDefault()
+//   const name = $('#url-name').val()
+//   const url = $('#url').val()
+//   crushifyLink(name, url, 1)
+//   $('#url, #url-name').val('')
+// })
 
 const crushifyLink = (name,url,folderId) => {
   fetch(`api/v1/links`, {
