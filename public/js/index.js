@@ -41,9 +41,16 @@ const renderLinks = (links) => {
   links.map(link => prependLinks(link))
 }
 
+const rout = () => {
+
+}
+
 const prependLinks = (link) => {
   $('.link-list').append(`
-    <p>${link.name}</p>
+    <div class="link-card">
+      <h3 class="link-name">${link.name}</h3>
+      <a class="short-link" href='/short/${link.id}'>localhost/3000/short/${link.id}</a>
+    </div>
   `)
 }
 

@@ -1,9 +1,14 @@
 /* #0C120C #A30000 #6D7275 #F0A202 #1BE7FF #FFFFFF */
 
 body {
-  background-color : #6D7275;
   font-family      : 'Biryani',
                      sans-serif;
+}
+
+header {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
 }
 
 .title-box {
@@ -13,13 +18,33 @@ body {
   background-color : #F0A202;
   align-items      : center;
   justify-content  : center;
-  /* width: 200px; */
+  min-width:   200px;
 }
 
 .title {
-  margin-right : 54px;
   color        : #A30000;
   font-size    : 40px;
+  font-weight: 900;
+}
+
+.title span {
+  font-weight: 200;
+}
+
+.header-form {
+  display: flex;
+  align-items      : center;
+  justify-content  : center;
+  border           : 20px solid #0C120C;
+  background-color : #A30000;
+  width: 80%;
+}
+
+#submit-button {
+  height           : 35px;
+  width: 100px;
+  border           : 3px solid #0C120C;
+  background-color : #FFFFFF;
 }
 
 .middle-section {
@@ -37,20 +62,12 @@ body {
   border        : 3px solid #0C120C;
 }
 
-#submit-button {
-  height           : 35px;
-  border           : 3px solfid #0C120C;
-  background-color : #FFFFFF;
-}
 
 .folder-creation {
   display         : flex;
   justify-content : flex-end;
 }
 
-span {
-  font-weight : lighter;
-}
 
 .folder:hover {
   cursor : pointer;
