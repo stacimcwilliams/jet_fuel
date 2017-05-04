@@ -57,17 +57,20 @@ const renderFolders = folders => {
 const submitUrl = ( id) => {
   const name = $('#url-name').val()
   const url = $('#url').val()
-  // crushifyLink(name, url, 1)
+  crushifyLink(name, url, 1)
   $('#url, #url-name').val('')
 }
 
-// $('#crushify-button').on('click', (e) => {
-//   e.preventDefault()
-//   const name = $('#url-name').val()
-//   const url = $('#url').val()
-//   crushifyLink(name, url, 1)
-//   $('#url, #url-name').val('')
-// })
+$('#crushify-button').on('click', (e) => {
+  console.log('foo')
+
+  e.preventDefault()
+  const name = $('#url-name').val()
+  const url = $('#url').val()
+  console.log(name)
+  crushifyLink(name, url, 1)
+  $('#url, #url-name').val('')
+})
 
 const crushifyLink = (name,url,folderId) => {
   fetch(`api/v1/links`, {
