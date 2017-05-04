@@ -9,19 +9,19 @@ $('#submit-button').on('click', (e) => {
   $('#folder-input').val('')
 })
 
-const createFolder = name => {
+const createFolder = title => {
   fetch('/api/v1/folders', {
     method: 'POST',
     headers: { 'Content-type':'application/json' },
-    body: JSON.stringify({ "name": name })
+    body: JSON.stringify({ title })
   })
     .then(response => response.json())
-    .then(folders => prependFolder(folders))
+    .then(folder => prependFolder(folder))
 }
 
 const prependFolder = folder => {
   $('.folder-container').prepend(`
-    <p id=${folder.id} class="folder" name=${folder.id} >${folder.name}</p>
+    <p id=${folder.id} class="folder" name=${folder.id} >${folder.title}</p>
   `)
 }
 
@@ -33,15 +33,14 @@ $('.folder-container').on('click', (e) => {
 
 const folderDetails = (id) => {
   $('.folder-detail').append(`
-    
+
   `)
 }
-
 
 const getFolders = () => {
   fetch('/api/v1/folders')
     .then(response => response.json())
-    .then(data => renderFolders(data.folders))
+    .then(data => renderFolders(data))
 }
 
 const renderFolders = folders => {
@@ -60,7 +59,7 @@ const crushifyLink = (name,url,folderId) => {
   fetch(`api/v1/links`, {
     method: 'POST',
     headers: {'Content-type': 'application/json' },
-    body: JSON.stringify({ "name": name, "url": url, "folderId": folderId })
+    body: JSON.stringify({ "name": name, "url": url, "folder_id": folderId })
   })
   .then(response => response.json())
   .then(data => console.log(data))
