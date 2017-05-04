@@ -1,71 +1,63 @@
-/*
-#0C120C
-#A30000
-#6D7275
-#F0A202
-#1BE7FF
-#FFFFFF
-*/
+/* #0C120C #A30000 #6D7275 #F0A202 #1BE7FF #FFFFFF */
 
-body{
-  font-family: 'Biryani', sans-serif;
-  background-color: #6D7275;
+body {
+  background-color : #6D7275;
+  font-family      : 'Biryani',
+                     sans-serif;
 }
+
 .title-box {
-  border: 20px solid #0C120C;
-  background-color: #F0A202;
-  height: 100px;
-  /*width: 200px;*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display          : flex;
+  height           : 100px;
+  border           : 20px solid #0C120C;
+  background-color : #F0A202;
+  align-items      : center;
+  justify-content  : center;
+  /* width: 200px; */
 }
 
 .title {
-  font-size: 40px;
-  color: #A30000;
-  margin-right: 54px;
+  margin-right : 54px;
+  color        : #A30000;
+  font-size    : 40px;
 }
 
-.middle-section{
-  width:100%;
-  height: 50px;
-  border-bottom: 20px solid #0C120C;
-  background-color: #FFFFFF;
+.middle-section {
+  width            : 100%;
+  height           : 50px;
+  border-bottom    : 20px solid #0C120C;
+  background-color : #FFFFFF;
 }
 
-#folder-input{
-  margin-bottom: 7px;
-  margin-right: 30px;
-  height: 27px;
-  width: 225px;
-  border: 3px solid #0C120C;
+#folder-input {
+  width         : 225px;
+  height        : 27px;
+  margin-right  : 30px;
+  margin-bottom : 7px;
+  border        : 3px solid #0C120C;
 }
 
-#submit-button{
-  height: 35px;
-  border: 3px solid #0C120C;
-  background-color: #FFFFFF
+#submit-button {
+  height           : 35px;
+  border           : 3px solfid #0C120C;
+  background-color : #FFFFFF;
 }
 
-.folder-creation{
-  display: flex;
-  justify-content: flex-end;
+.folder-creation {
+  display         : flex;
+  justify-content : flex-end;
 }
+
 span {
-  font-weight: lighter;
+  font-weight : lighter;
 }
 
 .folder:hover {
-  cursor: pointer;
+  cursor : pointer;
 }
 
-/*.folder-container{
-  display: flex;
-  background-color: white;
-  margin: 20px;
-}*/
+/* .folder-container{ display: flex; background-color: white; margin: 20px; } */
 
-.all-folder-content{
-  display: block;
+.all-folder-content {
+  display : block;
 }
