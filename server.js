@@ -37,6 +37,15 @@ app.get('/api/v1/folders/:folder_id', (request, response) => {
     .catch(error => console.log('error: ', error))
 })
 
+app.get('/api/v1/:id', (request, response) => {
+  database('links').where('id', request.params.id).select()
+    .then(data => {
+      const link = data[0]
+      return response.redirect(link.url)
+    })
+    .catch(error => console.log('error: ', error))
+})
+
 app.get('/api/v1/folders/:folder_id/links', (request, response) => {
   database('links').where('folder_id', request.params.folder_id).select()
     .then(links => response.status(200).json(links))
@@ -53,10 +62,17 @@ app.post('/api/v1/folders', (request, response) => {
 
 app.post('/api/v1/links', (request, response) => {
   const link = request.body
-  database('links').insert(link, ['id', 'name', 'url'])
+  database('links').insert(link, ['id', 'name', 'url', 'visits'])
     .then(link => response.status(201).json(link[0]))
     .catch(error => console.log('error: ', error))
 })
+
+// app.patch('/api/v1/links/:link_id', (request, response) => {
+//   const link = request.body
+//   database('links').where('id', request.perams.link_id).update(link, ['id', 'name', 'url', 'visits'])
+//     .then(link => response.status(201).json(link[0]))
+//     .catch(error => console.log('error: ', error))
+// })
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`)
