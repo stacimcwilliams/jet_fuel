@@ -4,9 +4,19 @@ $(document).ready(() => {
 
 $('#submit-button').on('click', (e) => {
   e.preventDefault()
+  $('.message-section').empty()
   const userFolder = $('#folder-input').val()
-  createFolder(userFolder)
-  $('#folder-input').val('')
+
+  if(userFolder.length){
+    createFolder(userFolder)
+    $('#folder-input').val('')
+  } else {
+    $('.message-section').append(`
+      <p>Please enter a name for your folder</p>
+    `)
+  }
+
+
 })
 
 $('.folder-list').on('click', (e) => {
@@ -80,24 +90,33 @@ const submitUrl = (id) => {
   const name = $('#url-name').val()
   const url = $('#url').val()
 
-  console.log(validateUrl(url))
-
-  if(validateUrl(url)){
+  if(validateUrl(url) && validateName(name)){
     crushifyLink(name, url, id)
-  } else {
-    $('.message-section').append(`
-      <p>Please enter a valid URL starting with http:// or https://</p>
-    `)
+    $('#url, #url-name').val('')
   }
-
-  $('#url, #url-name').val('')
 }
 
 const validateUrl = (url) => {
   const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi
   const regex = new RegExp(expression)
 
-  return url.match(regex)? true: false;
+  if(url.match(regex)){
+    return true
+  }
+
+  $('.message-section').append(`
+    <p>Please enter a valid URL starting with http:// or https://</p>
+  `)
+}
+
+const validateName = (name) => {
+  if(name.length){
+    return true
+  }
+
+  $('.message-section').append(`
+    <p>Please enter a name for your link</p>
+  `)
 }
 
 const createFolder = title => {
