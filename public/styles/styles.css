@@ -1,56 +1,60 @@
 /* #0C120C #A30000 #6D7275 #F0A202 #1BE7FF #FFFFFF */
 
 body {
-  font-family      : 'Biryani',
-                     sans-serif;
-  height: 100vh;
+  height      : 100vh;
+  font-family : 'Biryani',
+                sans-serif;
 }
 
 header {
-  display: flex;
-  flex-direction: row;
-  height: 20%
+  display        : flex;
+  height         : 20%;
+  flex-direction : row;
 }
 
 .title-box {
   display          : flex;
+  min-width        : 200px;
   border           : 20px solid #0C120C;
   background-color : #F0A202;
   align-items      : center;
   justify-content  : center;
-  min-width:   200px;
 }
 
 .title {
-  color        : #A30000;
-  font-size    : 40px;
-  font-weight: 900;
+  color       : #A30000;
+  font-size   : 40px;
+  font-weight : 900;
 }
 
 .title span {
-  font-weight: 200;
+  font-weight : 200;
 }
 
 .header-form {
-  display: flex;
-  align-items      : center;
-  justify-content  : center;
+  display          : flex;
+  width            : 80%;
   border           : 20px solid #0C120C;
   background-color : #A30000;
-  width: 80%;
+  align-items      : center;
+  justify-content  : center;
 }
 
 #submit-button {
+  width            : 100px;
   height           : 35px;
-  width: 100px;
   border           : 3px solid #0C120C;
   background-color : #FFFFFF;
 }
 
-.middle-section {
+.message-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height           : 5%;
-  border  : 20px solid #0C120C;
+  border           : 20px solid #0C120C;
   background-color : #FFFFFF;
+
 }
 
 #folder-input {
@@ -61,35 +65,38 @@ header {
   border        : 3px solid #0C120C;
 }
 
-
 .folder-creation {
   display         : flex;
   justify-content : flex-end;
 }
 
 .folder-container {
-  display: flex;
-  flex-direction: row;
-  height: 72.5%;
+  display        : flex;
+  height         : 72.5%;
+  flex-direction : row;
 }
 
-.folder-list {
-  padding-top: 30px;
+.folder-list-container {
   display          : flex;
-  flex-direction: column;
+  min-width        : 200px;
+  padding-top      : 15px;
   border           : 20px solid #0C120C;
   background-color : #F0A202;
   align-items      : center;
-  min-width:   200px;
+  flex-direction   : column;
+}
+
+.folder-list {
+  min-width : 150px;
 }
 
 .list-folder {
-  display: flex;
-  align-items: center;
-  border: 5px solid #0C120C;
-  width: 90%;
-  height: 30px;
-  margin: 5px;
+  display     : flex;
+  width       : 90%;
+  height      : 30px;
+  margin      : 5px;
+  border      : 5px solid #0C120C;
+  align-items : center;
 }
 
 .list-folder:hover {
@@ -97,29 +104,84 @@ header {
 }
 
 .folder {
-  text-transform: uppercase;
-  font-size: 15px;
-  font-weight: 900;
-  margin: 5px;
+  margin         : 5px;
+  text-transform : uppercase;
+  font-size      : 15px;
+  font-weight    : 900;
 }
 
 .folder-detail {
-  padding-top: 30px;
   display          : flex;
-  flex-direction: column;
+  width            : 80%;
+  padding-top      : 15px;
   border           : 20px solid #0C120C;
   background-color : #1BE7FF;
   align-items      : center;
-  width: 80%;
+  flex-direction   : column;
+}
+
+.new-link-title {
+  margin : 10px 0;
+}
+
+#url-name {
+  width  : 200px;
+  height : 27px;
+  margin : 0 10px 5px 0;
+  border : 3px solid #0C120C;
+}
+
+#url {
+  width  : 200px;
+  height : 27px;
+  margin : 0 10px 5px 0;
+  border : 3px solid #0C120C;
+}
+
+#crushify-button {
+  width            : 100px;
+  height           : 35px;
+  margin           : 0 10px 6px 0;
+  padding-bottom   : 1px;
+  border           : 3px solid #0C120C;
+  background-color : #FFFFFF;
 }
 
 .detail-name {
-  font-weight: 900;
-  font-size: 30px;
-  margin-bottom: 10px;
+  margin-bottom : 10px;
+  font-size     : 30px;
+  font-weight   : 900;
 }
 
-.link-list {
+.link-detail-title {
+  margin-top : 10px;
+}
 
-  
+.link-list {}
+
+.link-card {
+  display        : flex;
+  width          : 500px;
+  margin         : 10px;
+  border         : 3px solid #0C120C;
+  flex-direction : column;
+}
+
+.link-card header {
+  background-color : #0C120C;
+}
+
+.link-name {
+  margin         : 13px 10px;
+  color          : #A30000;
+  text-transform : uppercase;
+  font-size      : 20px;
+}
+
+.short-link {
+  margin : 5px 10px;
+}
+
+.link-card p {
+  margin : 5px 10px;
 }
