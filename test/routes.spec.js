@@ -30,6 +30,29 @@ describe('Jet Fuel server testing', () => {
 
   describe('Client routes', () => {
 
+    it('should return the homepage', (done) => {
+      chai.request(server)
+      .get('/')
+      .end((err, response) => {
+        response.should.have.status(200)
+        response.should.be.html
+        done()
+      })
+    }),
+
+    it('should return a 404 for a non existent route', (done) => {
+      chai.request(server)
+      .get('/sad')
+      .end((err, response) => {
+        response.should.have.status(404)
+        done()
+      })
+    })
+
+  })
+
+  describe('API routes', () => {
+
     describe('GET /api/v1/folders', () => {
       it('should return all folders', (done) => {
         chai.request(server)
@@ -123,11 +146,8 @@ describe('Jet Fuel server testing', () => {
           done()
         })
       })
-    })
-  })
-
-  describe('API routes', () => {
-
+    }),
+    
     describe('POST /api/v1/folders', () => {
       it('should create a new folder', (done) => {
         chai.request(server)
@@ -148,6 +168,18 @@ describe('Jet Fuel server testing', () => {
             response.body.should.be.a('array')
             done()
           })
+        })
+      }),
+
+      it('should not create a folder with missing data', (done) => {
+        chai.request(server)
+        .post('/api/v1/folders')
+        .send({
+          id: '7',
+        })
+        .end((err, response) => {
+          response.should.have.status(422)
+          done()
         })
       })
     }),
@@ -177,6 +209,20 @@ describe('Jet Fuel server testing', () => {
             response.body.should.be.a('array')
             done()
           })
+        })
+      }),
+
+      it('should not create a link with missing data', (done) => {
+        chai.request(server)
+        .post('/api/v1/links')
+        .send({
+          folder_id: 1,
+          name: 'Reddit',
+          visits: '0'
+        })
+        .end((err, response) => {
+          response.should.have.status(422)
+          done()
         })
       })
     })

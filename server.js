@@ -67,18 +67,35 @@ app.get('/api/v1/folders/:folder_id/links', (request, response) => {
 })
 
 app.post('/api/v1/folders', (request, response) => {
+  const validFolder = ["title"].every((prop)=> {
+    return request.body.hasOwnProperty(prop)
+  })
+
   const folder = request.body
-  console.log(folder)
-  database('folders').insert(folder, ['id', 'title'] )
+
+  if (validFolder) {
+    database('folders').insert(folder, ['id', 'title'] )
     .then(folder => response.status(201).json(folder[0]))
-    .catch(error => response.sendStatus(500))
+    .catch(error => response.sendStatus(422))
+  } else {
+    response.sendStatus(422)
+  }
 })
 
 app.post('/api/v1/links', (request, response) => {
+  const validLink = ["name", "url", "folder_id", "visits"].every((prop) => {
+    return request.body.hasOwnProperty(prop)
+  })
+
   const link = request.body
-  database('links').insert(link, ['id', 'name', 'url', 'visits'])
+
+  if(validLink){
+    database('links').insert(link, ['id', 'name', 'url', 'visits'])
     .then(link => response.status(201).json(link[0]))
-    .catch(error => response.sendStatus(500))
+    .catch(error => response.sendStatus(422))
+  } else {
+    response.sendStatus(422)
+  }
 })
 
 app.listen(app.get('port'), () => {

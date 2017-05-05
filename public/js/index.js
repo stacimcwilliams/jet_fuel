@@ -121,7 +121,7 @@ const createFolder = title => {
   fetch('/api/v1/folders', {
     method: 'POST',
     headers: { 'Content-type':'application/json' },
-    body: JSON.stringify({ title })
+    body: JSON.stringify({ "title":title })
   })
   .then(response => response.json())
   .then(folder => prependFolder(folder))
