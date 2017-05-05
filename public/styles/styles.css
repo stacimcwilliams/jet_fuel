@@ -48,13 +48,12 @@ header {
 }
 
 .message-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display          : flex;
   height           : 5%;
   border           : 20px solid #0C120C;
   background-color : #FFFFFF;
-
+  align-items      : center;
+  justify-content  : center;
 }
 
 #folder-input {
@@ -161,8 +160,7 @@ header {
 
 .link-card {
   display        : flex;
-  width          : 500px;
-  margin         : 10px;
+  margin         : 10px 0;
   border         : 3px solid #0C120C;
   flex-direction : column;
 }
