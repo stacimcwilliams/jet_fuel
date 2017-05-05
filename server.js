@@ -83,6 +83,19 @@ app.post('/api/v1/links', (request, response) => {
     .then(link => response.status(201).json(link[0]))
     .catch(error => console.log('error: ', error))
 })
+
+app.listen(app.get('port'), () => {
+  console.log(`${app.locals.title} is running on ${app.get('port')}.`)
+})
+
+module.exports = app
+
+
+
+
+
+
+
 //
 // app.patch('/api/v1/links/:link_id', (request, response) => {
 //   const link = request.body
@@ -90,9 +103,3 @@ app.post('/api/v1/links', (request, response) => {
 //     .then(link => response.status(200).json(link[0]))
 //     .catch(error => console.log('error: ', error))
 // })
-
-app.listen(app.get('port'), () => {
-  console.log(`${app.locals.title} is running on ${app.get('port')}.`)
-})
-
-module.exports = app

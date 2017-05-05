@@ -99,6 +99,19 @@ describe('Jet Fuel server testing', () => {
     })
   })
 
+  describe('GET /short/:id', () => {
+    it('should redirect with id', (done) => {
+      chai.request(server)
+      .get('/short/5')
+      .end((error,response) => {
+        response.redirects.should.be.a('array')
+        response.should.have.status(200)
+        response.redirects[0].should.equal('http://www.boardgamegeek.com/')
+        done()
+      })
+    })
+  })
+
   describe('GET /api/v1/links/:link_id', () => {
     it('should return one link with an id', (done) => {
       chai.request(server)
@@ -115,18 +128,6 @@ describe('Jet Fuel server testing', () => {
     })
   })
 
-  // describe('GET /short/:id', () => {
-  //   it('should redirect to long url', (done) => {
-  //     chai.request(server)
-  //     .get('/short/:id')
-  //     .end((error,response) => {
-  //       console.log("url short test:",response.body);
-  //       // response.should.have.status(307)
-  //       done()
-  //     })
-  //   })
-  // })
-
   describe('POST /api/v1/links', () => {
     it('should create a new link', (done) => {
       chai.request(server)
@@ -135,7 +136,7 @@ describe('Jet Fuel server testing', () => {
         id: 1,
         folder_id: 1,
         name: 'Reddit',
-        url: 'http://www.reddit.com',
+        url: "http://www.reddit.com",
         visits: '0'
       })
       .end((error, response) => {
