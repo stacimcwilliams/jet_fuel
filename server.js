@@ -58,7 +58,7 @@ app.get('/short/:id', (request, response) => {
     })
     .then(() =>  {
       database('links').where('id', request.params.id).update('visits', visits)
-      .then(()=> response.redirect(307, url))// add a status code
+      .then(()=> response.redirect(307, url))
       .catch(error => console.log('error: ', error))
     })
 })
