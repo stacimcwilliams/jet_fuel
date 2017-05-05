@@ -3,17 +3,17 @@
 body {
   font-family      : 'Biryani',
                      sans-serif;
+  height: 100vh;
 }
 
 header {
-  width: 100vw;
   display: flex;
   flex-direction: row;
+  height: 20%
 }
 
 .title-box {
   display          : flex;
-  height           : 100px;
   border           : 20px solid #0C120C;
   background-color : #F0A202;
   align-items      : center;
@@ -48,9 +48,8 @@ header {
 }
 
 .middle-section {
-  width            : 100%;
-  height           : 50px;
-  border-bottom    : 20px solid #0C120C;
+  height           : 5%;
+  border  : 20px solid #0C120C;
   background-color : #FFFFFF;
 }
 
@@ -68,13 +67,59 @@ header {
   justify-content : flex-end;
 }
 
+.folder-container {
+  display: flex;
+  flex-direction: row;
+  height: 72.5%;
+}
 
-.folder:hover {
+.folder-list {
+  padding-top: 30px;
+  display          : flex;
+  flex-direction: column;
+  border           : 20px solid #0C120C;
+  background-color : #F0A202;
+  align-items      : center;
+  min-width:   200px;
+}
+
+.list-folder {
+  display: flex;
+  align-items: center;
+  border: 5px solid #0C120C;
+  width: 90%;
+  height: 30px;
+  margin: 5px;
+}
+
+.list-folder:hover {
   cursor : pointer;
 }
 
-/* .folder-container{ display: flex; background-color: white; margin: 20px; } */
+.folder {
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 900;
+  margin: 5px;
+}
 
-.all-folder-content {
-  display : block;
+.folder-detail {
+  padding-top: 30px;
+  display          : flex;
+  flex-direction: column;
+  border           : 20px solid #0C120C;
+  background-color : #1BE7FF;
+  align-items      : center;
+  width: 80%;
+}
+
+.detail-name {
+  font-weight: 900;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.link-list {
+
+  
 }

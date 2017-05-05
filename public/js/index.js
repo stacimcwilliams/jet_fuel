@@ -9,8 +9,8 @@ $('#submit-button').on('click', (e) => {
   $('#folder-input').val('')
 })
 
-$('.folder-container').on('click', (e) => {
-  if(e.target.className === 'folder'){
+$('.folder-list').on('click', (e) => {
+  if(e.target.className === 'list-folder'){
     folderDetails(e.target.id, e.target.innerText)
   }
 })
@@ -24,7 +24,7 @@ const folderDetails = (id, name) => {
         <input id="url-name" placeholder="name"></input>
         <input id="url" placeholder="url"></input>
         <button onclick=submitUrl(${id}) id="crushify-button">Crushify!!!!</button>
-        <div class="link-list">
+        <div class="link-list"> Crushed Links:
         </div>
     </div>
   `)
@@ -50,6 +50,7 @@ const prependLinks = (link) => {
     <div class="link-card">
       <h3 class="link-name">${link.name}</h3>
       <a class="short-link" href='/short/${link.id}'>localhost/3000/short/${link.id}</a>
+      <p>${link.visits}</p>
     </div>
   `)
 }
@@ -65,8 +66,10 @@ const renderFolders = folders => {
 }
 
 const prependFolder = folder => {
-  $('.folder-container').prepend(`
-    <p id=${folder.id} class="folder" name=${folder.title} >${folder.title}</p>
+  $('.folder-list').prepend(`
+    <div id=${folder.id} class="list-folder">
+      <p class="folder" name=${folder.title} >${folder.title}</p>
+    </div>
   `)
 }
 
