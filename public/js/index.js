@@ -15,8 +15,6 @@ $('#submit-button').on('click', (e) => {
       <p>Please enter a name for your folder</p>
     `)
   }
-
-
 })
 
 $('.folder-list').on('click', (e) => {
