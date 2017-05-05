@@ -83,6 +83,50 @@ describe('Jet Fuel server testing', () => {
     })
   })
 
+  describe('GET /api/v1/folders/:folder_id', () => {
+    it('should return one folder with an id', (done) => {
+      chai.request(server)
+      .get('/api/v1/folders/1')
+      .end((error,response) => {
+        response.should.have.status(200)
+        response.should.be.json
+        response.body.should.be.a('array')
+        response.body.should.have.length(1)
+        response.body[0].should.have.property('title')
+        response.body[0].title.should.equal('shopping')
+        done()
+      })
+    })
+  })
+
+  describe('GET /api/v1/links/:link_id', () => {
+    it('should return one link with an id', (done) => {
+      chai.request(server)
+      .get('/api/v1/links/3')
+      .end((error,response) => {
+        response.should.have.status(200)
+        response.should.be.json
+        response.body.should.be.a('array')
+        response.body.should.have.length(1)
+        response.body[0].should.have.property('name')
+        response.body[0].name.should.equal('amazon')
+        done()
+      })
+    })
+  })
+
+  // describe('GET /short/:id', () => {
+  //   it('should redirect to long url', (done) => {
+  //     chai.request(server)
+  //     .get('/short/:id')
+  //     .end((error,response) => {
+  //       console.log("url short test:",response.body);
+  //       // response.should.have.status(307)
+  //       done()
+  //     })
+  //   })
+  // })
+
   describe('POST /api/v1/links', () => {
     it('should create a new link', (done) => {
       chai.request(server)
@@ -95,7 +139,6 @@ describe('Jet Fuel server testing', () => {
         visits: '0'
       })
       .end((error, response) => {
-        console.log(response.body);
         response.should.have.status(201)
         response.body.should.be.a('object')
         response.body.should.have.property('name')
