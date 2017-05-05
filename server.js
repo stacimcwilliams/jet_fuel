@@ -31,19 +31,28 @@ app.get('/api/v1/folders', (request, response) => {
 app.get('/api/v1/links', (request, response) => {
   database('links').select()
     .then(links => response.status(200).json(links))
-    .catch(error => console.log('error: ', error))
+    .catch(error => {
+      response.status()
+      console.log('error: ', error)
+    })
 })
 
 app.get('/api/v1/folders/:folder_id', (request, response) => {
   database('folders').where('id', request.params.folder_id).select()
     .then(folders => response.status(200).json(folders))
-    .catch(error => console.log('error: ', error))
+    .catch(error => {
+      response.status()
+      console.log('error: ', error)
+    }).catch(error => console.log('error: ', error))
 })
 
 app.get('/api/v1/links/:link_id', (request, response) => {
   database('links').where('id', request.params.link_id).select()
     .then(link => response.status(200).json(link))
-    .catch(error => console.log('error: ', error))
+    .catch(error => {
+      response.status()
+      console.log('error: ', error)
+    })
 })
 
 app.get('/short/:id', (request, response) => {
@@ -59,14 +68,20 @@ app.get('/short/:id', (request, response) => {
     .then(() =>  {
       database('links').where('id', request.params.id).update('visits', visits)
       .then(()=> response.redirect(307, url))
-      .catch(error => console.log('error: ', error))
+      .catch(error => {
+        response.status()
+        console.log('error: ', error)
+      })
     })
 })
 
 app.get('/api/v1/folders/:folder_id/links', (request, response) => {
   database('links').where('folder_id', request.params.folder_id).select()
     .then(links => response.status(200).json(links))
-    .catch(error => console.log('error: ', error))
+    .catch(error => {
+      response.status()
+      console.log('error: ', error)
+    })
 })
 
 app.post('/api/v1/folders', (request, response) => {
@@ -74,14 +89,20 @@ app.post('/api/v1/folders', (request, response) => {
   console.log(folder)
   database('folders').insert(folder, ['id', 'title'] )
     .then(folder => response.status(201).json(folder[0]))
-    .catch(error => console.log('error: ', error))
+    .catch(error => {
+      response.status()
+      console.log('error: ', error)
+    })
 })
 
 app.post('/api/v1/links', (request, response) => {
   const link = request.body
   database('links').insert(link, ['id', 'name', 'url', 'visits'])
     .then(link => response.status(201).json(link[0]))
-    .catch(error => console.log('error: ', error))
+    .catch(error => {
+      response.status()
+      console.log('error: ', error)
+    })
 })
 
 app.listen(app.get('port'), () => {
