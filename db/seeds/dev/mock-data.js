@@ -23,6 +23,6 @@ exports.seed = (knex, Promise) => {
               { name: 'Awesome', url: 'http://www.theawesomer.com', folder_id: folder[0] }
             ])
           })
-      ]) // end Promise.all
+      ]) 
     })
 };
