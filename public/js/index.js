@@ -13,22 +13,22 @@ $('#submit-button').on('click', (e) => {
   } else {
     $('.message-section').append(`
       <p>Please enter a name for your folder</p>
-    `)
-  }
-})
+      `)
+    }
+  })
 
-$('.folder-list').on('click', (e) => {
-  if(e.target.className === 'list-folder'){
-    folderDetails(e.target.id, e.target.innerText)
-  }
-})
+  $('.folder-list').on('click', (e) => {
+    if(e.target.className === 'list-folder'){
+      folderDetails(e.target.id, e.target.innerText)
+    }
+  })
 
-const folderDetails = (id, name) => {
-  let container = $('.folder-detail')
-  container.empty()
-  container.prepend(`
-    <div class="folder-details">
-      <h2 class="detail-name">${name}</h2>
+  const folderDetails = (id, name) => {
+    let container = $('.folder-detail')
+    container.empty()
+    container.prepend(`
+      <div class="folder-details">
+        <h2 class="detail-name">${name}</h2>
         <h3 class="new-link-title">Add New Link:</h3>
         <input id="url-name" placeholder="name"></input>
         <input id="url" placeholder="url"></input>
