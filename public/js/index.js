@@ -18,13 +18,16 @@ $('.folder-list').on('click', (e) => {
 const folderDetails = (id, name) => {
   let container = $('.folder-detail')
   container.empty()
-  container.append(`
+  container.prepend(`
     <div class="folder-details">
       <h2 class="detail-name">${name}</h2>
+        <h3 class="new-link-title">Add New Link:</h3>
         <input id="url-name" placeholder="name"></input>
         <input id="url" placeholder="url"></input>
         <button onclick=submitUrl(${id}) id="crushify-button">Crushify!!!!</button>
-        <div class="link-list"> Crushed Links:
+        <div class="detail-links-container">
+          <h3 class="link-detail-title">Crushed Links:</h3>
+          <div class="link-list"> </div>
         </div>
     </div>
   `)
@@ -41,16 +44,15 @@ const renderLinks = (links) => {
   links.map(link => prependLinks(link))
 }
 
-const rout = () => {
-
-}
-
 const prependLinks = (link) => {
-  $('.link-list').append(`
+  $('.link-list').prepend(`
     <div class="link-card">
-      <h3 class="link-name">${link.name}</h3>
-      <a class="short-link" href='/short/${link.id}'>localhost/3000/short/${link.id}</a>
-      <p>${link.visits}</p>
+      <header>
+        <h3 class="link-name">${link.name}</h3>
+      </header>
+      <p>Short link:<a class="short-link" href='/short/${link.id}'>localhost/3000/short/${link.id}</a></p>
+      <p>Visits: ${link.visits}</p>
+      <p>Added on: ${link.created_at}</p>
     </div>
   `)
 }
@@ -74,11 +76,28 @@ const prependFolder = folder => {
 }
 
 const submitUrl = (id) => {
+  $('.message-section').empty()
   const name = $('#url-name').val()
   const url = $('#url').val()
 
-  crushifyLink(name, url, id)
+  console.log(validateUrl(url))
+
+  if(validateUrl(url)){
+    crushifyLink(name, url, id)
+  } else {
+    $('.message-section').append(`
+      <p>Please enter a valid URL starting with http:// or https://</p>
+    `)
+  }
+
   $('#url, #url-name').val('')
+}
+
+const validateUrl = (url) => {
+  const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi
+  const regex = new RegExp(expression)
+
+  return url.match(regex)? true: false;
 }
 
 const createFolder = title => {
