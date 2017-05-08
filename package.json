@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha ./test/**.js || true",
+    "test": "node_modules/.bin/mocha ./test/**.js",
     "start": "node server.js"
   },
   "author": "",
