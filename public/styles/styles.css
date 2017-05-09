@@ -17,7 +17,7 @@ header {
   width            : 20%;
   min-width        : 200px;
   border           : 20px solid #0C120C;
-  background-color : #1BE7FF;
+  background-color : red;
   align-items      : center;
   justify-content  : center;
 }
