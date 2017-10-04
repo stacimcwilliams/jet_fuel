@@ -60,6 +60,7 @@ const prependLinks = (link) => {
       </header>
       <p>Short link:<a class="short-link" href='/short/${link.id}'>localhost/3000/short/${link.id}</a></p>
       <p>Visits: ${link.visits}</p>
+      <p>Long URL: <a href=${link.url}>${link.url}</a>
       <p>Added on: ${link.created_at}</p>
     </div>
   `);
@@ -123,8 +124,8 @@ const createFolder = (title) => {
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({ title }),
   })
-  .then(response => response.json())
-  .then(folder => prependFolder(folder));
+    .then(response => response.json())
+    .then(folder => prependFolder(folder));
 };
 
 
@@ -132,8 +133,10 @@ const crushifyLink = (name, url, folderId) => {
   fetch('api/v1/links', {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
-    body: JSON.stringify({ name, url, folder_id: folderId, visits: 0 }),
+    body: JSON.stringify({
+      name, url, folder_id: folderId, visits: 0,
+    }),
   })
-  .then(response => response.json())
-  .then(link => prependLinks(link));
+    .then(response => response.json())
+    .then(link => prependLinks(link));
 };
