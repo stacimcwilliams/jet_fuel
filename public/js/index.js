@@ -1,32 +1,32 @@
 $(document).ready(() => {
-  getFolders()
-})
+  getFolders();
+});
 
 $('#submit-button').on('click', (e) => {
-  e.preventDefault()
-  $('.message-section').empty()
-  const userFolder = $('#folder-input').val()
+  e.preventDefault();
+  $('.message-section').empty();
+  const userFolder = $('#folder-input').val();
 
-  if(userFolder.length){
-    createFolder(userFolder)
-    $('#folder-input').val('')
+  if (userFolder.length) {
+    createFolder(userFolder);
+    $('#folder-input').val('');
   } else {
     $('.message-section').append(`
       <p>Please enter a name for your folder</p>
-      `)
-    }
-  })
+      `);
+  }
+});
 
-  $('.folder-list').on('click', (e) => {
-    if(e.target.className === 'list-folder'){
-      folderDetails(e.target.id, e.target.innerText)
-    }
-  })
+$('.folder-list').on('click', (e) => {
+  if (e.target.className === 'list-folder') {
+    folderDetails(e.target.id, e.target.innerText);
+  }
+});
 
-  const folderDetails = (id, name) => {
-    let container = $('.folder-detail')
-    container.empty()
-    container.prepend(`
+const folderDetails = (id, name) => {
+  const container = $('.folder-detail');
+  container.empty();
+  container.prepend(`
       <div class="folder-details">
         <h2 class="detail-name">${name}</h2>
         <h3 class="new-link-title">Add New Link:</h3>
@@ -38,19 +38,19 @@ $('#submit-button').on('click', (e) => {
           <div class="link-list"> </div>
         </div>
     </div>
-  `)
-  getLinks(id)
-}
+  `);
+  getLinks(id);
+};
 
 const getLinks = (id) => {
   fetch(`/api/v1/folders/${id}/links`)
     .then(response => response.json())
-    .then(data => renderLinks(data))
-}
+    .then(data => renderLinks(data));
+};
 
 const renderLinks = (links) => {
-  links.map(link => prependLinks(link))
-}
+  links.map(link => prependLinks(link));
+};
 
 const prependLinks = (link) => {
   $('.link-list').prepend(`
@@ -62,78 +62,78 @@ const prependLinks = (link) => {
       <p>Visits: ${link.visits}</p>
       <p>Added on: ${link.created_at}</p>
     </div>
-  `)
-}
+  `);
+};
 
 const getFolders = () => {
   fetch('/api/v1/folders')
     .then(response => response.json())
-    .then(data => renderFolders(data))
-}
+    .then(data => renderFolders(data));
+};
 
-const renderFolders = folders => {
-  folders.map(folder => prependFolder(folder))
-}
+const renderFolders = (folders) => {
+  folders.map(folder => prependFolder(folder));
+};
 
-const prependFolder = folder => {
+const prependFolder = (folder) => {
   $('.folder-list').prepend(`
     <div id=${folder.id} class="list-folder">
       <p class="folder" name=${folder.title} >${folder.title}</p>
     </div>
-  `)
-}
+  `);
+};
 
 const submitUrl = (id) => {
-  $('.message-section').empty()
-  const name = $('#url-name').val()
-  const url = $('#url').val()
+  $('.message-section').empty();
+  const name = $('#url-name').val();
+  const url = $('#url').val();
 
-  if(validateUrl(url) && validateName(name)){
-    crushifyLink(name, url, id)
-    $('#url, #url-name').val('')
+  if (validateUrl(url) && validateName(name)) {
+    crushifyLink(name, url, id);
+    $('#url, #url-name').val('');
   }
-}
+};
 
 const validateUrl = (url) => {
-  const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi
-  const regex = new RegExp(expression)
+  const expression = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+  const regex = new RegExp(expression);
 
-  if(url.match(regex)){
-    return true
+  if (url.match(regex)) {
+    return true;
   }
 
   $('.message-section').append(`
     <p>Please enter a valid URL starting with http:// or https://</p>
-  `)
-}
+  `);
+};
 
 const validateName = (name) => {
-  if(name.length){
-    return true
+  if (name.length) {
+    return true;
   }
 
   $('.message-section').append(`
     <p>Please enter a name for your link</p>
-  `)
-}
+  `);
+};
 
-const createFolder = title => {
+const createFolder = (title) => {
   fetch('/api/v1/folders', {
     method: 'POST',
-    headers: { 'Content-type':'application/json' },
-    body: JSON.stringify({ "title":title })
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({ title }),
   })
   .then(response => response.json())
-  .then(folder => prependFolder(folder))
-}
+  .then(folder => prependFolder(folder));
+};
 
 
-const crushifyLink = (name,url,folderId) => {
-  fetch(`api/v1/links`, {
+const crushifyLink = (name, url, folderId) => {
+  fetch('api/v1/links', {
     method: 'POST',
-    headers: {'Content-type': 'application/json' },
-    body: JSON.stringify({ "name": name, "url": url, "folder_id": folderId, "visits": 0 })
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({ name, url, folder_id: folderId, visits: 0 }),
   })
   .then(response => response.json())
-  .then(link => prependLinks(link))
-}
+  .then(link => prependLinks(link));
+};

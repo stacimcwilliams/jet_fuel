@@ -10,9 +10,10 @@ deployment:
   staging:
     branch: staging
     heroku:
-      appname: staci-jetfuel-staging
+      appname: jetfuel-staging2
 
-production:
+  production:
     branch: master
     heroku:
-      appname: jetfuel--
+      appname: jetfuel-
+
