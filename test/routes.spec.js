@@ -1,12 +1,12 @@
 process.env.NODE_ENV = 'test';
 
-const environment = 'test'
-const configuration = require('../knexfile')[environment]
-const database = require('knex')(configuration)
-const chai = require('chai')
-const should = chai.should()
-const chaiHttp = require('chai-http')
-const server = require('../server')
+const environment = 'test';
+const configuration = require('../knexfile')[environment];
+const database = require('knex')(configuration);
+const chai = require('chai');
+const should = chai.should();
+const chaiHttp = require('chai-http');
+const server = require('../server');
 
 chai.use(chaiHttp)
 
@@ -147,7 +147,7 @@ describe('Jet Fuel server testing', () => {
         })
       })
     }),
-    
+
     describe('POST /api/v1/folders', () => {
       it('should create a new folder', (done) => {
         chai.request(server)
