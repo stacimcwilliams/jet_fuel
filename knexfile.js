@@ -3,7 +3,9 @@
 module.exports = {
   test: {
    client: 'pg',
+
    connection: process.env.DATABASE_URL || 'postgres://localhost/jetfuel_test',
+
    migrations: {
      directory: __dirname + '/db/migrations'
    },
@@ -22,7 +24,6 @@ module.exports = {
       directory: './db/seeds/dev'
     }
   },
-
   staging: {
     client: 'pg',
     connection: process.env.DATABASE_URL + `?ssl=true`,

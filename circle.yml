@@ -16,3 +16,4 @@ deployment:
     branch: master
     heroku:
       appname: jetfuel-
+
