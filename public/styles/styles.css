@@ -8,21 +8,25 @@ body {
 
 header {
   display        : flex;
-  height         : 10%;
-  flex-direction : row;
+  height: 125px;
+  justify-content: center;
 }
 
 .title-box {
   display          : flex;
-  width            : 20%;
   min-width        : 200px;
   align-items      : center;
   justify-content  : center;
+  flex-direction: column;
 }
 
 .title {
   font-size   : 40px;
   font-weight : 900;
+}
+
+.tag {
+  font-weight: 100;
 }
 
 .title span {
@@ -31,7 +35,6 @@ header {
 
 .header-form {
   display          : flex;
-  width            : 80%;
   align-items      : center;
   justify-content  : center;
 }
@@ -45,10 +48,11 @@ header {
 
 .message-section {
   display          : flex;
-  height           : 5%;
+  height           : 40px;
   background-color : #FFFFFF;
   align-items      : center;
   justify-content  : center;
+  color: red;
 }
 
 #folder-input {
@@ -57,6 +61,7 @@ header {
   margin-right  : 30px;
   margin-bottom : 7px;
   border        : 1px solid #0C120C;
+  text-align: center;
 }
 
 .folder-creation {
@@ -66,13 +71,12 @@ header {
 
 .folder-container {
   display        : flex;
-  height         : 72.5%;
-  flex-direction : row;
+  flex-direction: column;
+  align-items: center;
 }
 
 .folder-list-container {
   display          : flex;
-  width            : 20%;
   min-width        : 200px;
   padding-top      : 15px;
   align-items      : center;
@@ -80,12 +84,16 @@ header {
 }
 
 .folder-list {
+  display: flex;
+  flex-direction: row;
   min-width : 150px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 80%;
 }
 
 .list-folder {
   display     : flex;
-  width       : 90%;
   height      : 30px;
   margin      : 5px;
   border      : 1px solid black;
@@ -94,18 +102,19 @@ header {
 
 .list-folder:hover {
   cursor : pointer;
+  color: red;
 }
 
 .folder {
   margin         : 5px;
   text-transform : uppercase;
   font-size      : 15px;
-  font-weight    : 900;
+  font-weight    : 500;
+  z-index: -1;
 }
 
 .folder-detail {
   display          : flex;
-  width            : 80%;
   padding-top      : 15px;
   align-items      : center;
   flex-direction   : column;
@@ -141,7 +150,8 @@ header {
 .detail-name {
   margin-bottom : 10px;
   font-size     : 30px;
-  font-weight   : 900;
+  font-weight   : 700;
+  text-align: center;
 }
 
 .link-detail-title {
@@ -156,6 +166,7 @@ header {
 }
 
 .link-card header {
+  height: 40px;
   border-bottom: 1px solid black;
 }
 
