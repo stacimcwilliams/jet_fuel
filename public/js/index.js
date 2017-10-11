@@ -30,9 +30,11 @@ const folderDetails = (id, name) => {
       <div class="folder-details">
         <h2 class="detail-name">${name}</h2>
         <h3 class="new-link-title">Add New Link:</h3>
-        <input id="url-name" placeholder="name"></input>
-        <input id="url" placeholder="url"></input>
-        <button onclick=submitUrl(${id}) id="crushify-button">Crushify!!!!</button>
+        <form class="url-form">
+          <input id="url-name" placeholder="name"></input>
+          <input id="url" placeholder="url"></input>
+          <button onclick=submitUrl(${id}) id="crushify-button">Crushify!!!!</button>
+        </form>
         <div class="detail-links-container">
           <h3 class="link-detail-title">Crushed Links:</h3>
           <div class="link-list"> </div>
