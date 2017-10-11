@@ -30,9 +30,11 @@ const folderDetails = (id, name) => {
       <div class="folder-details">
         <h2 class="detail-name">${name}</h2>
         <h3 class="new-link-title">Add New Link:</h3>
-        <input id="url-name" placeholder="name"></input>
-        <input id="url" placeholder="url"></input>
-        <button onclick=submitUrl(${id}) id="crushify-button">Crushify!!!!</button>
+        <form class="url-form">
+          <input id="url-name" placeholder="name"></input>
+          <input id="url" placeholder="url"></input>
+          <button onclick=submitUrl(${id}) id="crushify-button">Crushify!!!!</button>
+        </form>
         <div class="detail-links-container">
           <h3 class="link-detail-title">Crushed Links:</h3>
           <div class="link-list"> </div>
@@ -60,6 +62,7 @@ const prependLinks = (link) => {
       </header>
       <p>Short link:<a class="short-link" href='/short/${link.id}'>localhost/3000/short/${link.id}</a></p>
       <p>Visits: ${link.visits}</p>
+      <p>Long URL: <a href=${link.url}>${link.url}</a>
       <p>Added on: ${link.created_at}</p>
     </div>
   `);
@@ -123,8 +126,8 @@ const createFolder = (title) => {
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({ title }),
   })
-  .then(response => response.json())
-  .then(folder => prependFolder(folder));
+    .then(response => response.json())
+    .then(folder => prependFolder(folder));
 };
 
 
@@ -132,8 +135,10 @@ const crushifyLink = (name, url, folderId) => {
   fetch('api/v1/links', {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
-    body: JSON.stringify({ name, url, folder_id: folderId, visits: 0 }),
+    body: JSON.stringify({
+      name, url, folder_id: folderId, visits: 0,
+    }),
   })
-  .then(response => response.json())
-  .then(link => prependLinks(link));
+    .then(response => response.json())
+    .then(link => prependLinks(link));
 };
